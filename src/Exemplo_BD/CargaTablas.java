@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,7 +59,7 @@ public class CargaTablas {
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error, no se puede realizar el select");
         }
         return lista;
     }
@@ -81,7 +82,7 @@ public class CargaTablas {
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error, no se puede realizar el select");
         }
         return lista2;
 }

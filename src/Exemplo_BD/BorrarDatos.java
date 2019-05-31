@@ -27,7 +27,7 @@ public class BorrarDatos {
         stmt.execute(sql);
         JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
         } catch (SQLException ex) {
-            System.out.println("NO hay filas para borar");
+            JOptionPane.showMessageDialog(null, "NO hay filas para borar");
         } 
         return numID;
 }
@@ -41,7 +41,7 @@ public class BorrarDatos {
         stmt.execute(sql);
         JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
         } catch (SQLException ex) {
-            System.out.println("NO hay filas para borar");
+            JOptionPane.showMessageDialog(null, "NO hay filas para borar");
         } 
         return IdPais;
 }

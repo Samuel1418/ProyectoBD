@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +34,7 @@ public class ConectarBaseEjemplo {
             System.out.println("Conexion= True");
             
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Conexion= False");
             System.out.println("Conexion= False");
         } finally {
             try {
@@ -66,7 +68,7 @@ public class ConectarBaseEjemplo {
             Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error, no se puede crear la tabla");
         }return url;
     }
     
@@ -92,7 +94,7 @@ public class ConectarBaseEjemplo {
             Statement stmt = connn.createStatement()) {
             stmt.execute(sql1);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error, no se puede crear la tabla");
         }return url;
     }
     

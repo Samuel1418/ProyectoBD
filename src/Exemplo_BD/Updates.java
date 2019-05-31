@@ -29,7 +29,7 @@ public class Updates {
             enunciado.execute("UPDATE Clase set Nombre='" + nombre + "',IDPais='" + IdPais + "' where NumeroID='" + NumeroID + "';");
             JOptionPane.showMessageDialog(null, "Se ha actualizado un alumno con exito!");
         } catch (SQLException ex) {
-            System.out.println("No se puede actualizar!");
+            JOptionPane.showMessageDialog(null, "No se puede actualizar");
         }
         return "Actualizado";
     }
@@ -44,7 +44,7 @@ public class Updates {
             enunciado.execute("UPDATE Pais set NombrePais='" + NombrePais + "' where IDPais='" + IdPais + "';");
             JOptionPane.showMessageDialog(null, "Se ha actualizado un pais con exito!");
         } catch (SQLException ex) {
-            System.out.println("No se puede actualizar!");
+            JOptionPane.showMessageDialog(null, "No se puede actualizar");
         }
         return "Actualizado";
     }
