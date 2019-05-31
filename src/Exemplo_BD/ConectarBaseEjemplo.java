@@ -46,9 +46,9 @@ public class ConectarBaseEjemplo {
         
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS Clase (\n"
-                + "	Nombre text NOT NULL,\n"
-                + "	NumeroID real PRIMARY KEY,\n"
-                + "	IdPais real\n"
+                + "	Nombre text ,\n"
+                + "	NumeroID integer PRIMARY KEY,\n"
+                + "	IdPais integer\n"
                 + ");";
         
         try (Connection conn = DriverManager.getConnection(url);
@@ -66,7 +66,7 @@ public class ConectarBaseEjemplo {
         // SQL statement for creating a new table
         String sql1 = "CREATE TABLE IF NOT EXISTS Pais (\n"
                 + "	NombrePais text NOT NULL,\n"
-                + "	IdPais real PRIMARY KEY\n"
+                + "	IdPais integer PRIMARY KEY\n"
                 + ");";
         
         try (Connection connn = DriverManager.getConnection(url);
