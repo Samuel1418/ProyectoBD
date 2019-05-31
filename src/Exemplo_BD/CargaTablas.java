@@ -23,6 +23,11 @@ public class CargaTablas {
     ArrayList<Object[]> lista = new ArrayList<Object[]>();
     ArrayList<Object[]> lista2 = new ArrayList<Object[]>();
 
+    /*
+    Necesitamos conectar a la base  así que accedemos con el método estático
+    Como hasta ahora conectampos con la base dando la ruta del archivo que 
+    contiene la base de datos
+    */
     private Connection connect() {
         String url = "jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db";
         Connection conn = null;
@@ -34,6 +39,10 @@ public class CargaTablas {
         return conn;
     }
 
+    /*
+    Método que permite meter todo lo quehay en la tabla Clase en un array.
+    Gracias a este método despues voy poder actualizar las tablas a tiempo real
+    */
     public ArrayList selectAll() {
         String sql = "SELECT Nombre, NumeroID, IDPais FROM Clase";
 
@@ -54,6 +63,10 @@ public class CargaTablas {
         return lista;
     }
 
+    /*
+    Método que permite meter todo lo quehay en la tabla Pais en un array.
+    Gracias a este método despues voy poder actualizar las tablas a tiempo real
+    */
     public ArrayList selectAll2() {
         String sql = "SELECT NombrePais, IDPais FROM Pais";
 
