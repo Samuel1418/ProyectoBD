@@ -15,6 +15,7 @@ import java.sql.Statement;
  * @author Samuel
  */
 public class ConectarBaseEjemplo {
+    //Constructor OPtativo 
     public ConectarBaseEjemplo(String nombreClase){}
     /*
     Metodo que nos conecta al archivo de hola.db o en su defecto nos crea el archivo 

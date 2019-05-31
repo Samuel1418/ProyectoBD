@@ -658,29 +658,18 @@ public class Tabla extends javax.swing.JFrame {
     }//GEN-LAST:event_liTexto8ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         try {
-   
-   
-// ESTABLECER LA CONEXIÓN
-   Connection conexion;
-   conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
-   // CREAR ENUNCIADO
-   Statement enunciado;
-   enunciado = conexion.createStatement();
-   // BORRAR LA FILA
-   //realizamos el delete sql cogiendo los campos que hay en la interfaz
-   String sql="DELETE FROM Clase where NumeroID='"+liTexto8.getText()+"';";
-   enunciado.executeUpdate(sql);
+    //Instanciamos objeto de Borrar datos para usar su metodo de borrar
+    BorrarDatos obj= new BorrarDatos();
+    //REcibe el id del alumno por la interfaz
+   obj.borrarAlumn(Integer.parseInt(liTexto8.getText()));
    //Limpiamos el campo
    liTexto8.setText("");
    tabla1.removeAll();
     //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
    vaciarTabla();
    mostrarTablas();
-   JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
-    } catch (SQLException e) {
-   System.out.println(e.getMessage());
-    }
+   
+ 
 //      try { 
 //     Connection conexion;   
 //    conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
@@ -696,27 +685,16 @@ public class Tabla extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-         try {
-   
- // ESTABLECER LA CONEXIÓN
-   Connection conexion;
-   conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
-   // CREAR ENUNCIADO
-   Statement enunciado;
-   enunciado = conexion.createStatement();
-   // BORRAR LA FILA
-   //realizamos el delete sql cogiendo los campos que hay en la interfaz
-   String sql="DELETE FROM Pais where IDPais='"+liTexto7.getText()+"';";
-   enunciado.executeUpdate(sql);
+   //Instanciamos objeto de Borrar datos para usar su metodo de borrar
+    BorrarDatos obj= new BorrarDatos();
+    //Recibe el id del pais por la interfaz
+   obj.borrarPais(Integer.parseInt(liTexto7.getText()));
+   //Limpiamos el campo
+   liTexto7.setText("");
+   tabla1.removeAll();
     //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
    vaciarTabla();
    mostrarTablas();
-   //Limpiamos campo
-   liTexto7.setText("");
-   JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
-    } catch (SQLException e) {
-   System.out.println(e.getMessage());
-    }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void liTexto9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liTexto9ActionPerformed
