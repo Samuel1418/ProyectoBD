@@ -533,10 +533,13 @@ public class Tabla extends javax.swing.JFrame {
        createNewTable();
        
        IntroducirDatos app = new IntroducirDatos();
+       //metemos lo que el usuario haya escrito en las lineas de texto en el metodo insertar
        app.insert(liTexto1.getText(),Integer.parseInt(liTexto2.getText()),Integer.parseInt(liTexto3.getText()));
+       //Limpiamos los campos despues de hacer el insert
        liTexto1.setText("");
        liTexto2.setText("");
        liTexto3.setText("");
+       //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
        vaciarTabla();
        mostrarTablas();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -557,6 +560,7 @@ public class Tabla extends javax.swing.JFrame {
     System.out.println("Nombre: " + resultados.getString(1)
       + " numeroID: " + resultados.getInt(2)+" IdPais: "+resultados.getString(3));
    }
+   vaciarTabla();
    mostrarTablas();
    // CERRAR
    resultados.close();
@@ -586,9 +590,11 @@ public class Tabla extends javax.swing.JFrame {
    System.out.println(e.getMessage());
   }
     JOptionPane.showMessageDialog(null, "Base Borrada con exito!\nAhora no podrá acceder hasta que cree un nuevo alumno");
+    //Lmpiamos los campos
     liTexto1.setText("");
     liTexto2.setText("");
     liTexto3.setText("");
+    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
     vaciarTabla();
     mostrarTablas();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -610,8 +616,10 @@ public class Tabla extends javax.swing.JFrame {
        createNewTable2();   
        IntroducirDatos app1l = new IntroducirDatos();
        app1l.insert2(liTexto4.getText(),Integer.parseInt(liTexto5.getText()));
+       //limpiamos los campos
        liTexto4.setText("");
        liTexto5.setText("");
+       //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
        vaciarTabla();
        mostrarTablas();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -626,6 +634,7 @@ public class Tabla extends javax.swing.JFrame {
    enunciado = conexion.createStatement();
    // BORRAR LA TABLA Y LO QUE HAY ESCRITO EN LA MISMA DE LA INTERFAZ
    enunciado.execute("DROP TABLE IF EXISTS Pais;");
+    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
    vaciarTabla();
    mostrarTablas();
     // CERRAR
@@ -635,6 +644,7 @@ public class Tabla extends javax.swing.JFrame {
    System.out.println(e.getMessage());
   }
     JOptionPane.showMessageDialog(null, "Base Borrada con exito!\nAhora no podrá acceder hasta que cree un nuevo alumno");
+    //Limpiamos los campos
     liTexto4.setText("");
     liTexto5.setText("");
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -649,17 +659,22 @@ public class Tabla extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
          try {
-   // ESTABLECER LA CONEXIÓN
-   String sql="DELETE FROM Clase where NumeroID='"+liTexto8.getText()+"';";
+   
+   
+// ESTABLECER LA CONEXIÓN
    Connection conexion;
    conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
    // CREAR ENUNCIADO
    Statement enunciado;
    enunciado = conexion.createStatement();
    // BORRAR LA FILA
+   //realizamos el delete sql cogiendo los campos que hay en la interfaz
+   String sql="DELETE FROM Clase where NumeroID='"+liTexto8.getText()+"';";
    enunciado.executeUpdate(sql);
+   //Limpiamos el campo
    liTexto8.setText("");
    tabla1.removeAll();
+    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
    vaciarTabla();
    mostrarTablas();
    JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
@@ -682,17 +697,21 @@ public class Tabla extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
          try {
-   // ESTABLECER LA CONEXIÓN
-   String sql="DELETE FROM Pais where IDPais='"+liTexto7.getText()+"';";
+   
+ // ESTABLECER LA CONEXIÓN
    Connection conexion;
    conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
    // CREAR ENUNCIADO
    Statement enunciado;
    enunciado = conexion.createStatement();
    // BORRAR LA FILA
+   //realizamos el delete sql cogiendo los campos que hay en la interfaz
+   String sql="DELETE FROM Pais where IDPais='"+liTexto7.getText()+"';";
    enunciado.executeUpdate(sql);
+    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
    vaciarTabla();
    mostrarTablas();
+   //Limpiamos campo
    liTexto7.setText("");
    JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
     } catch (SQLException e) {
@@ -727,11 +746,14 @@ public class Tabla extends javax.swing.JFrame {
    // CREAR ENUNCIADO
    Statement enunciado;
    enunciado = conexion.createStatement();
+   //realizamos el update sql cogiendo los campos que hay en la interfaz
    enunciado.execute("UPDATE Clase set Nombre='"+liTexto10.getText()+"',IDPais='"+liTexto11.getText()+"' where NumeroID='"+liTexto9.getText()+"';");
    JOptionPane.showMessageDialog(null, "Se ha actualizado un alumno con exito!");
+   //Limpiamos los campos
    liTexto10.setText("");
    liTexto11.setText("");
    liTexto9.setText("");
+    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
    vaciarTabla();
    mostrarTablas();
     // CERRAR
@@ -749,10 +771,13 @@ public class Tabla extends javax.swing.JFrame {
    // CREAR ENUNCIADO
    Statement enunciado;
    enunciado = conexion.createStatement();
+   //realizamos el update sql cogiendo los campos que hay en la interfaz
    enunciado.execute("UPDATE Pais set NombrePais='"+jTextField3.getText()+"' where IDPais='"+jTextField2.getText()+"';");
    JOptionPane.showMessageDialog(null, "Se ha actualizado un pais con exito!");
+   //Limpiamos los campos
    jTextField2.setText("");
    jTextField3.setText("");
+    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
    vaciarTabla();
    mostrarTablas();
     // CERRAR
