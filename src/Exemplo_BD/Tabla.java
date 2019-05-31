@@ -40,8 +40,8 @@ public class Tabla extends javax.swing.JFrame {
     CargaTablas. Se meten en un array los arrays cargados por el propio método
     que ya tienen dentro los datos de su tabla. Y luego se meten dentro de la
     interfaz gráfica recorriendo los arrays y a su vez añadiendo a la tabla
-    */
-     public String mostrarTablas() {
+     */
+    public String mostrarTablas() {
         CargaTablas obx = new CargaTablas();
 
         ArrayList<Object[]> listaclase = new ArrayList<Object[]>();
@@ -63,14 +63,15 @@ public class Tabla extends javax.swing.JFrame {
         tabla2.setModel(modelo2);
         return "tablas cargadas";
 
-}
-     /*
+    }
+
+    /*
      Método que me permite vaciar las tablas, para asi hacer que la interfaz
      se quede sin tabla y luego volver a cargar la misma. De este modo lo que
      hago es que las tablas se actualicen. Con este método se borra y con el 
      mostrar se ve la tabla con los nuevos datos.
      */
-     public String vaciarTabla() {
+    public String vaciarTabla() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) tabla1.getModel();
             int filas = tabla1.getRowCount();
@@ -84,8 +85,10 @@ public class Tabla extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             System.out.println("no se pudo resetear la tabla");
-        } return "tabla vaciada";
-}
+        }
+        return "tabla vaciada";
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -529,74 +532,74 @@ public class Tabla extends javax.swing.JFrame {
     }//GEN-LAST:event_liTexto2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       connect();
-       createNewTable();
-       
-       IntroducirDatos app = new IntroducirDatos();
-       //metemos lo que el usuario haya escrito en las lineas de texto en el metodo insertar
-       app.insert(liTexto1.getText(),Integer.parseInt(liTexto2.getText()),Integer.parseInt(liTexto3.getText()));
-       //Limpiamos los campos despues de hacer el insert
-       liTexto1.setText("");
-       liTexto2.setText("");
-       liTexto3.setText("");
-       //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-       vaciarTabla();
-       mostrarTablas();
+        connect();
+        createNewTable();
+
+        IntroducirDatos app = new IntroducirDatos();
+        //metemos lo que el usuario haya escrito en las lineas de texto en el metodo insertar
+        app.insert(liTexto1.getText(), Integer.parseInt(liTexto2.getText()), Integer.parseInt(liTexto3.getText()));
+        //Limpiamos los campos despues de hacer el insert
+        liTexto1.setText("");
+        liTexto2.setText("");
+        liTexto3.setText("");
+        //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+        vaciarTabla();
+        mostrarTablas();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-   // ESTABLECER LA CONEXIÓN
-   Connection conexion;
-   conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
-   // CREAR ENUNCIADO
-   Statement enunciado;
-   enunciado = conexion.createStatement();
-   // CONSULTA DATOS
-   ResultSet resultados;
-   resultados = enunciado.executeQuery("SELECT * FROM Clase;");
-   // PROCESAR EL RESULTADO
-   while (resultados.next()) {
-    System.out.println("Nombre: " + resultados.getString(1)
-      + " numeroID: " + resultados.getInt(2)+" IdPais: "+resultados.getString(3));
-   }
-   vaciarTabla();
-   mostrarTablas();
-   // CERRAR
-   resultados.close();
-   enunciado.close();
-   conexion.close();
+            // ESTABLECER LA CONEXIÓN
+            Connection conexion;
+            conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
+            // CREAR ENUNCIADO
+            Statement enunciado;
+            enunciado = conexion.createStatement();
+            // CONSULTA DATOS
+            ResultSet resultados;
+            resultados = enunciado.executeQuery("SELECT * FROM Clase;");
+            // PROCESAR EL RESULTADO
+            while (resultados.next()) {
+                System.out.println("Nombre: " + resultados.getString(1)
+                        + " numeroID: " + resultados.getInt(2) + " IdPais: " + resultados.getString(3));
+            }
+            vaciarTabla();
+            mostrarTablas();
+            // CERRAR
+            resultados.close();
+            enunciado.close();
+            conexion.close();
 
-  } catch (Exception e) {
-   JOptionPane.showMessageDialog(null,"No existe la base de datos, por favor cree un alumno antes");
-  }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No existe la base de datos, por favor cree un alumno antes");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-          try {
-   // ESTABLECER LA CONEXIÓN
-   Connection conexion;
-   conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
-   // CREAR ENUNCIADO
-   Statement enunciado;
-   enunciado = conexion.createStatement();
-   // BORRAR LA TABLA Y LO QUE HAY ESCRITO EN LA MISMA DE LA INTERFAZ
-   enunciado.execute("DROP TABLE IF EXISTS clase;");
-   
-    // CERRAR
-   enunciado.close();
-   conexion.close();
-  } catch (Exception e) {
-   System.out.println(e.getMessage());
-  }
-    JOptionPane.showMessageDialog(null, "Base Borrada con exito!\nAhora no podrá acceder hasta que cree un nuevo alumno");
-    //Lmpiamos los campos
-    liTexto1.setText("");
-    liTexto2.setText("");
-    liTexto3.setText("");
-    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-    vaciarTabla();
-    mostrarTablas();
+        try {
+            // ESTABLECER LA CONEXIÓN
+            Connection conexion;
+            conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
+            // CREAR ENUNCIADO
+            Statement enunciado;
+            enunciado = conexion.createStatement();
+            // BORRAR LA TABLA Y LO QUE HAY ESCRITO EN LA MISMA DE LA INTERFAZ
+            enunciado.execute("DROP TABLE IF EXISTS clase;");
+
+            // CERRAR
+            enunciado.close();
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        JOptionPane.showMessageDialog(null, "Base Borrada con exito!\nAhora no podrá acceder hasta que cree un nuevo alumno");
+        //Lmpiamos los campos
+        liTexto1.setText("");
+        liTexto2.setText("");
+        liTexto3.setText("");
+        //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+        vaciarTabla();
+        mostrarTablas();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void liTexto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liTexto3ActionPerformed
@@ -612,41 +615,41 @@ public class Tabla extends javax.swing.JFrame {
     }//GEN-LAST:event_liTexto5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       connect();
-       createNewTable2();   
-       IntroducirDatos app1l = new IntroducirDatos();
-       app1l.insert2(liTexto4.getText(),Integer.parseInt(liTexto5.getText()));
-       //limpiamos los campos
-       liTexto4.setText("");
-       liTexto5.setText("");
-       //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-       vaciarTabla();
-       mostrarTablas();
+        connect();
+        createNewTable2();
+        IntroducirDatos app1l = new IntroducirDatos();
+        app1l.insert2(liTexto4.getText(), Integer.parseInt(liTexto5.getText()));
+        //limpiamos los campos
+        liTexto4.setText("");
+        liTexto5.setText("");
+        //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+        vaciarTabla();
+        mostrarTablas();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
-   // ESTABLECER LA CONEXIÓN
-   Connection conexion;
-   conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
-   // CREAR ENUNCIADO
-   Statement enunciado;
-   enunciado = conexion.createStatement();
-   // BORRAR LA TABLA Y LO QUE HAY ESCRITO EN LA MISMA DE LA INTERFAZ
-   enunciado.execute("DROP TABLE IF EXISTS Pais;");
-    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-   vaciarTabla();
-   mostrarTablas();
-    // CERRAR
-   enunciado.close();
-   conexion.close();
-  } catch (Exception e) {
-   System.out.println(e.getMessage());
-  }
-    JOptionPane.showMessageDialog(null, "Base Borrada con exito!\nAhora no podrá acceder hasta que cree un nuevo alumno");
-    //Limpiamos los campos
-    liTexto4.setText("");
-    liTexto5.setText("");
+            // ESTABLECER LA CONEXIÓN
+            Connection conexion;
+            conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
+            // CREAR ENUNCIADO
+            Statement enunciado;
+            enunciado = conexion.createStatement();
+            // BORRAR LA TABLA Y LO QUE HAY ESCRITO EN LA MISMA DE LA INTERFAZ
+            enunciado.execute("DROP TABLE IF EXISTS Pais;");
+            //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+            vaciarTabla();
+            mostrarTablas();
+            // CERRAR
+            enunciado.close();
+            conexion.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        JOptionPane.showMessageDialog(null, "Base Borrada con exito!\nAhora no podrá acceder hasta que cree un nuevo alumno");
+        //Limpiamos los campos
+        liTexto4.setText("");
+        liTexto5.setText("");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void liTexto7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liTexto7ActionPerformed
@@ -658,18 +661,17 @@ public class Tabla extends javax.swing.JFrame {
     }//GEN-LAST:event_liTexto8ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-    //Instanciamos objeto de Borrar datos para usar su metodo de borrar
-    BorrarDatos obj= new BorrarDatos();
-    //REcibe el id del alumno por la interfaz
-   obj.borrarAlumn(Integer.parseInt(liTexto8.getText()));
-   //Limpiamos el campo
-   liTexto8.setText("");
-   tabla1.removeAll();
-    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-   vaciarTabla();
-   mostrarTablas();
-   
- 
+        //Instanciamos objeto de Borrar datos para usar su metodo de borrar
+        BorrarDatos obj = new BorrarDatos();
+        //REcibe el id del alumno por la interfaz
+        obj.borrarAlumn(Integer.parseInt(liTexto8.getText()));
+        //Limpiamos el campo
+        liTexto8.setText("");
+        tabla1.removeAll();
+        //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+        vaciarTabla();
+        mostrarTablas();
+
 //      try { 
 //     Connection conexion;   
 //    conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
@@ -685,16 +687,16 @@ public class Tabla extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-   //Instanciamos objeto de Borrar datos para usar su metodo de borrar
-    BorrarDatos obj= new BorrarDatos();
-    //Recibe el id del pais por la interfaz
-   obj.borrarPais(Integer.parseInt(liTexto7.getText()));
-   //Limpiamos el campo
-   liTexto7.setText("");
-   tabla1.removeAll();
-    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-   vaciarTabla();
-   mostrarTablas();
+        //Instanciamos objeto de Borrar datos para usar su metodo de borrar
+        BorrarDatos obj = new BorrarDatos();
+        //Recibe el id del pais por la interfaz
+        obj.borrarPais(Integer.parseInt(liTexto7.getText()));
+        //Limpiamos el campo
+        liTexto7.setText("");
+        tabla1.removeAll();
+        //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+        vaciarTabla();
+        mostrarTablas();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void liTexto9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liTexto9ActionPerformed
@@ -718,55 +720,36 @@ public class Tabla extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-      Connection conexion;
-        try {
-            conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
-   // CREAR ENUNCIADO
-   Statement enunciado;
-   enunciado = conexion.createStatement();
-   //realizamos el update sql cogiendo los campos que hay en la interfaz
-   enunciado.execute("UPDATE Clase set Nombre='"+liTexto10.getText()+"',IDPais='"+liTexto11.getText()+"' where NumeroID='"+liTexto9.getText()+"';");
-   JOptionPane.showMessageDialog(null, "Se ha actualizado un alumno con exito!");
-   //Limpiamos los campos
-   liTexto10.setText("");
-   liTexto11.setText("");
-   liTexto9.setText("");
-    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-   vaciarTabla();
-   mostrarTablas();
-    // CERRAR
-   enunciado.close();
-   conexion.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(Tabla.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String nombre = liTexto10.getText();
+        int IdPais = Integer.parseInt(liTexto11.getText());
+        int NumeroID = Integer.parseInt(liTexto9.getText());
+        Updates obx = new Updates();
+        obx.upAlumn(nombre, IdPais, NumeroID);
+        //Limpiamos los campos
+        liTexto10.setText("");
+        liTexto11.setText("");
+        liTexto9.setText("");
+        //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+        vaciarTabla();
+        mostrarTablas();
+
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-         Connection conexion;
-        try {
-            conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db");
-   // CREAR ENUNCIADO
-   Statement enunciado;
-   enunciado = conexion.createStatement();
-   //realizamos el update sql cogiendo los campos que hay en la interfaz
-   enunciado.execute("UPDATE Pais set NombrePais='"+jTextField3.getText()+"' where IDPais='"+jTextField2.getText()+"';");
-   JOptionPane.showMessageDialog(null, "Se ha actualizado un pais con exito!");
-   //Limpiamos los campos
-   jTextField2.setText("");
-   jTextField3.setText("");
-    //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
-   vaciarTabla();
-   mostrarTablas();
-    // CERRAR
-   enunciado.close();
-   conexion.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(Tabla.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String NombrePais = jTextField3.getText();
+        int IDPais = Integer.parseInt(jTextField2.getText());
+        Updates obx = new Updates();
+        obx.upPais(NombrePais, IDPais);
+        //Limpiamos los campos
+        jTextField2.setText("");
+        jTextField3.setText("");
+        //vaciamos tabla y luego la volvemos a cargar con los nuevos datos
+        vaciarTabla();
+        mostrarTablas();
+
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

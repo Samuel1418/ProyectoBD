@@ -17,23 +17,13 @@ import javax.swing.JOptionPane;
  */
 public class BorrarDatos {
     
-    
-    private Connection connect() {
-        String url = "jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
-    
     public int borrarAlumn(int numID) {
         String url = "jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db";
+        //Nos conectamos a la base
         try (Connection connn = DriverManager.getConnection(url);
         Statement stmt = connn.createStatement()) {
         String sql="DELETE FROM Clase where NumeroID='"+numID+"';";
+        //Mandamos ejecutar el comando de borrado de la fila
         stmt.execute(sql);
         JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
         } catch (SQLException ex) {
@@ -43,9 +33,11 @@ public class BorrarDatos {
 }
     public int borrarPais(int IdPais) {
         String url = "jdbc:sqlite:D:\\Clase\\SQLMan\\hola.db";
+        //Nos conectamos a la base
         try (Connection connn = DriverManager.getConnection(url);
         Statement stmt = connn.createStatement()) {
         String sql="DELETE FROM Pais where IDPais='"+IdPais+"';";
+        //Mandamos ejecutar el comando de borrado de la fila
         stmt.execute(sql);
         JOptionPane.showMessageDialog(null, "Fila borrada con Exito");
         } catch (SQLException ex) {
