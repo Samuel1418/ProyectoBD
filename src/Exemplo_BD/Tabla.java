@@ -35,31 +35,42 @@ public class Tabla extends javax.swing.JFrame {
         initComponents();
     }
 
-    
-     public void mostrarTablas() {
+    /*
+    Permite cargar en la interfaz la tabla llamando a los métodos de la clase
+    CargaTablas. Se meten en un array los arrays cargados por el propio método
+    que ya tienen dentro los datos de su tabla. Y luego se meten dentro de la
+    interfaz gráfica recorriendo los arrays y a su vez añadiendo a la tabla
+    */
+     public String mostrarTablas() {
         CargaTablas obx = new CargaTablas();
 
         ArrayList<Object[]> listaclase = new ArrayList<Object[]>();
-        ArrayList<Object[]> listaclase2 = new ArrayList<Object[]>();
+        ArrayList<Object[]> listapais = new ArrayList<Object[]>();
         listaclase = obx.selectAll();
-        listaclase2 = obx.selectAll2();
+        listapais = obx.selectAll2();
 
         DefaultTableModel modelo = (DefaultTableModel) tabla1.getModel();
         for (Object[] ele : listaclase) {
             modelo.addRow(ele);
         }
         DefaultTableModel modelo2 = (DefaultTableModel) tabla2.getModel();
-        for (Object[] elem : listaclase2) {
+        for (Object[] elem : listapais) {
             modelo2.addRow(elem);
 
         }
 
         tabla1.setModel(modelo);
         tabla2.setModel(modelo2);
+        return "tablas cargadas";
 
 }
-     
-     public void vaciarTabla() {
+     /*
+     Método que me permite vaciar las tablas, para asi hacer que la interfaz
+     se quede sin tabla y luego volver a cargar la misma. De este modo lo que
+     hago es que las tablas se actualicen. Con este método se borra y con el 
+     mostrar se ve la tabla con los nuevos datos.
+     */
+     public String vaciarTabla() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) tabla1.getModel();
             int filas = tabla1.getRowCount();
@@ -73,7 +84,7 @@ public class Tabla extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             System.out.println("no se pudo resetear la tabla");
-        }
+        } return "tabla vaciada";
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -523,7 +534,6 @@ public class Tabla extends javax.swing.JFrame {
        
        IntroducirDatos app = new IntroducirDatos();
        app.insert(liTexto1.getText(),Integer.parseInt(liTexto2.getText()),Integer.parseInt(liTexto3.getText()));
-       JOptionPane.showMessageDialog(null, "Se ha insertado un alumno con exito!");
        liTexto1.setText("");
        liTexto2.setText("");
        liTexto3.setText("");
@@ -600,7 +610,6 @@ public class Tabla extends javax.swing.JFrame {
        createNewTable2();   
        IntroducirDatos app1l = new IntroducirDatos();
        app1l.insert2(liTexto4.getText(),Integer.parseInt(liTexto5.getText()));
-       JOptionPane.showMessageDialog(null, "Se ha insertado un pais con exito!");
        liTexto4.setText("");
        liTexto5.setText("");
        vaciarTabla();

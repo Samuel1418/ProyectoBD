@@ -21,7 +21,7 @@ public class ConectarBaseEjemplo {
     con ese nombre. Hay que dar la ruta al metodo getConnection y nos devolverá true
     si conecta a la tabla y false si no consigue establecer la conexión
     */
-    public static void connect() {
+    public static String connect() {
         Connection conn = null;
         try {
             // db parameters
@@ -41,7 +41,7 @@ public class ConectarBaseEjemplo {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-        }
+        }return "conectado!";
     }
  
     
