@@ -49,6 +49,7 @@ public class IntroducirDatos {
             pstmt.setInt(2, NumeroID);
             pstmt.setInt(3, IdPais);
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Se ha añadido un Alumno");
         } catch (SQLException e) {
             System.out.println("No se puede repetir la clave primaria!");
             JOptionPane.showMessageDialog(null,"No se puede repetir la clave primaria!");
@@ -71,6 +72,7 @@ public class IntroducirDatos {
             pstmt2.setString(1, NombrePais);
             pstmt2.setInt(2, IdPais);
             pstmt2.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Se ha añadido un Pais");
         } catch (SQLException e) {
             System.out.println("No se puede repetir la clave primaria!");
             JOptionPane.showMessageDialog(null,"No se puede repetir la clave primaria!");
