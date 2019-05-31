@@ -15,7 +15,7 @@ import java.sql.Statement;
  * @author Samuel
  */
 public class ConectarBaseEjemplo {
-    
+    public ConectarBaseEjemplo(String nombreClase){}
     /*
     Metodo que nos conecta al archivo de hola.db o en su defecto nos crea el archivo 
     con ese nombre. Hay que dar la ruta al metodo getConnection y nos devolverá true
